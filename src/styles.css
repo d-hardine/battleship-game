@@ -40,13 +40,22 @@ body {
     height: 500px;
     display: flex;
     flex-wrap: wrap;
+    background-color: #dde5b6;
 }
 
-.none, .missed, .bullseye, .battleship{
+.none, .missed, .bullseye, .battleship, .carrier, .destroyer, .patrolBoat, .submarine {
     width: 50px;
     height: 50px;
     border: 1px solid grey;
     box-sizing: border-box; /*penting*/
+}
+
+.hidden {
+    width: 50px;
+    height: 50px;
+    border: 1px solid grey;
+    box-sizing: border-box; /*penting*/
+    background-color: #dde5b6;
 }
 
 .missed {
@@ -62,33 +71,17 @@ body {
 }
 
 .carrier {
-    width: 50px;
-    height: 50px;
-    border: 1px solid grey;
-    box-sizing: border-box; /*penting*/
     background-color: green;
 }
 
 .destroyer {
-    width: 50px;
-    height: 50px;
-    border: 1px solid grey;
-    box-sizing: border-box; /*penting*/
     background-color: yellow;
 }
 
 .patrolBoat {
-    width: 50px;
-    height: 50px;
-    border: 1px solid grey;
-    box-sizing: border-box; /*penting*/
     background-color: slateblue;
 }
 
 .submarine {
-    width: 50px;
-    height: 50px;
-    border: 1px solid grey;
-    box-sizing: border-box; /*penting*/
     background-color: peru;
 }
