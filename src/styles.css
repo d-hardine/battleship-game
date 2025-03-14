@@ -42,18 +42,22 @@ body {
     flex-wrap: wrap;
 }
 
-.none {
+.none, .missed, .bullseye, .battleship{
     width: 50px;
     height: 50px;
     border: 1px solid grey;
     box-sizing: border-box; /*penting*/
 }
 
+.missed {
+    background-color: ghostwhite;
+}
+
+.bullseye {
+    background-color: red;
+}
+
 .battleship {
-    width: 50px;
-    height: 50px;
-    border: 1px solid grey;
-    box-sizing: border-box; /*penting*/
     background-color: purple;
 }
 
@@ -62,7 +66,7 @@ body {
     height: 50px;
     border: 1px solid grey;
     box-sizing: border-box; /*penting*/
-    background-color: purple;
+    background-color: green;
 }
 
 .destroyer {
@@ -70,7 +74,7 @@ body {
     height: 50px;
     border: 1px solid grey;
     box-sizing: border-box; /*penting*/
-    background-color: purple;
+    background-color: yellow;
 }
 
 .patrolBoat {
@@ -78,7 +82,7 @@ body {
     height: 50px;
     border: 1px solid grey;
     box-sizing: border-box; /*penting*/
-    background-color: purple;
+    background-color: slateblue;
 }
 
 .submarine {
@@ -86,5 +90,5 @@ body {
     height: 50px;
     border: 1px solid grey;
     box-sizing: border-box; /*penting*/
-    background-color: purple;
+    background-color: peru;
 }
