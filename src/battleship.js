@@ -47,9 +47,8 @@ class GameBoard {
         this.coordinateHistory = []
     }
 
-    shipPlacement(ship, x = Math.ceil(Math.random() * 10), y = Math.ceil(Math.random() * 10), isHorizontal = Math.random() < 0.5) { //position boolean: true is horizontal
-        console.log(ship.name, x ,y, isHorizontal)
-        if(isHorizontal) { // concerning x coordinate, boolean true is horizontal
+    shipPlacement(ship, x = Math.ceil(Math.random() * 10), y = Math.ceil(Math.random() * 10), isVertical = Math.random() < 0.5) { //position boolean: true is horizontal
+        if(isVertical) { // concerning x coordinate, boolean true is vertical
 
             //check validity
             if(x <= 10 - ship.length)
@@ -64,11 +63,10 @@ class GameBoard {
                 }
             }
 
-            for(let i = x; i < x + ship.length; i++ ) {
-                console.log(i,y)
+            for(let i = x; i < x + ship.length; i++ )
                 this.boardInfo[this.boardCoordinate.indexOf(`${i},${y}`)] = ship
-            }
-        } else if(!isHorizontal){ // concerning y coordinate, boolean false is vertical
+            
+        } else if(!isVertical){ // concerning y coordinate, boolean false is horizontal
 
             //check validity
             if(y <= 10 - ship.length)
@@ -83,34 +81,40 @@ class GameBoard {
                 }
             }
 
-            for(let i = y; i < y + ship.length; i++ ) {
-                console.log(x,i)
+            for(let i = y; i < y + ship.length; i++ )
                 this.boardInfo[this.boardCoordinate.indexOf(`${x},${i}`)] = ship
-            }
         }
     }
-    receiveAttack(x, y) {
-        const attackCoordinate = this.boardCoordinate.indexOf(`${x},${y}`)
-        if(this.coordinateHistory.includes(attackCoordinate))
-            return `attack at coordinate "${x},${y}" has been done, please pick another coordinate`
+    receiveAttack(index) {
+        if(this.coordinateHistory.includes(index))
+            return
 
-        if(this.boardInfo[attackCoordinate] === 'none') {
-            this.boardInfo[attackCoordinate] = 'missed'
-            this.coordinateHistory.push(attackCoordinate)
-            console.log(this.boardInfo)
+        if(this.boardInfo[index] === 'none' || this.boardInfo[index] === 'missed') {
+            this.boardInfo[index] = 'missed'
+            this.coordinateHistory.push(index)
+            console.log('missed')
         } else {
-            this.boardInfo[attackCoordinate].hitCompute()
-            console.log(this.boardInfo[attackCoordinate])
-            console.log(this.boardInfo)
-            this.coordinateHistory.push(attackCoordinate)
-            if(this.boardInfo[attackCoordinate].sunkCompute())
-                console.log(`${this.boardInfo[attackCoordinate].name} is sunk`)
+            this.boardInfo[index].hitCompute()
+            console.log(this.boardInfo[index])
+            this.coordinateHistory.push(index)
+            if(this.boardInfo[index].sunkCompute())
+                console.log(`${this.boardInfo[index].name} is sunk`)
+            this.boardInfo[index] = 'bullseye'
         }
         //all ships destroyed checker
-        const checker = ships.every(ship => ship.sunkCompute())
-        if(checker) {
-            console.log('all ships are destroyed')
+        let enemyCheckerArray = []
+        let playerCheckerArray = []
+        for(let i=0; i < enemyShips.length; i++) {
+            enemyCheckerArray[i] = enemyShips[i].isSunk
+            playerCheckerArray[i] = ships[i].isSunk
         }
+        let enemyChecker = enemyCheckerArray.every(check => check == true)
+        let playerChecker = playerCheckerArray.every(check => check == true)
+
+        if(enemyChecker)
+            console.log('all of enemy ships are destroyed. GAME OVER')
+        else if (playerChecker)
+            console.log('all of your ships are destroyed. GAME OVER')
     }
 }
 
