@@ -8,7 +8,6 @@ const twoBoardContainer = document.querySelector('.two-boards-container')
 function createBoard(user) {
     const gameBoardContainer = document.createElement('div')
     gameBoardContainer.classList.add('game-board')
-    gameBoardContainer.style.backgroundColor = '#dde5b6'
     gameBoardContainer.id = user.name
 
     for(let i=0; i < 100; i++) {
@@ -32,9 +31,13 @@ const playerBlocks = document.querySelectorAll('#player div')
 const enemyBlocks = document.querySelectorAll('#enemy div')
 
 function clickableBlocks(user, userBlocks) {
+    let clickedBlockArray = []
     let randomNumberArray = []
     userBlocks.forEach(userBlocks => {
         userBlocks.addEventListener('click', () =>  {
+            if(clickedBlockArray.includes(userBlocks.id))
+                return
+            clickedBlockArray.push(userBlocks.id)
             user.GameBoard.receiveAttack(userBlocks.id)
             userBlocks.setAttribute('class', '')
             userBlocks.classList.add(user.GameBoard.boardInfo[userBlocks.id])
@@ -46,7 +49,6 @@ function clickableBlocks(user, userBlocks) {
                 randomNumber = Math.floor(Math.random() * 100)
             randomNumberArray.push(randomNumber)
 
-            console.log('enemy attack:', randomNumberArray)
             player.GameBoard.receiveAttack(randomNumber)
             playerBlocks[randomNumber].setAttribute('class', '')
             playerBlocks[randomNumber].classList.add(player.GameBoard.boardInfo[randomNumber])
@@ -54,5 +56,10 @@ function clickableBlocks(user, userBlocks) {
     })
 }
 
-clickableBlocks(player, playerBlocks)
 clickableBlocks(enemy, enemyBlocks)
+
+//hide the enemy's ship placement
+enemyBlocks.forEach(enemyBlock => {
+    enemyBlock.setAttribute('class', '')
+    enemyBlock.classList.add('hidden')
+})
