@@ -1,5 +1,3 @@
-export const greeting = 'Hello from battleship script'
-
 class Ship {
     constructor(name, length) {
         this.name = name
@@ -111,10 +109,12 @@ class GameBoard {
         let enemyChecker = enemyCheckerArray.every(check => check == true)
         let playerChecker = playerCheckerArray.every(check => check == true)
 
-        if(enemyChecker)
-            console.log('all of enemy ships are destroyed. GAME OVER')
-        else if (playerChecker)
-            console.log('all of your ships are destroyed. GAME OVER')
+        if(enemyChecker) {
+            return 'All of enemy ships are destroyed.'
+        }
+        else if (playerChecker) {
+            return 'All of your ships are destroyed.'
+        }
     }
 }
 
