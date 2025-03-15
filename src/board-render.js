@@ -1,11 +1,7 @@
-export const jancok = 'board render cok'
-
-//////////////////////////
-import { player, enemy } from "./battleship"
 const twoBoardContainer = document.querySelector('.two-boards-container')
 
 //create boards
-function createBoard(user) {
+export function createBoard(user) {
     const gameBoardContainer = document.createElement('div')
     gameBoardContainer.classList.add('game-board')
     gameBoardContainer.id = user.name
@@ -23,24 +19,24 @@ function createBoard(user) {
     twoBoardContainer.appendChild(gameBoardContainer)
 }
 
-createBoard(player)
-createBoard(enemy)
-
 //create clickable blocks
-const playerBlocks = document.querySelectorAll('#player div')
-const enemyBlocks = document.querySelectorAll('#enemy div')
-
-function clickableBlocks(user, userBlocks) {
+export function clickableBlocks(user, userBlocks, player, playerBlocks) {
     let clickedBlockArray = []
     let randomNumberArray = []
+    let battleOver
     userBlocks.forEach(userBlocks => {
         userBlocks.addEventListener('click', () =>  {
-            if(clickedBlockArray.includes(userBlocks.id))
+            if(clickedBlockArray.includes(userBlocks.id)) //player will never attack the same location twice
                 return
             clickedBlockArray.push(userBlocks.id)
-            user.GameBoard.receiveAttack(userBlocks.id)
+            battleOver = user.GameBoard.receiveAttack(userBlocks.id)
             userBlocks.setAttribute('class', '')
             userBlocks.classList.add(user.GameBoard.boardInfo[userBlocks.id])
+
+            //check if battle is over, no need for further attack
+            if(battleOver) {
+                return gameOver(battleOver)
+            }
         
             //enemy attack to player
             let randomNumber = Math.floor(Math.random() * 100)
@@ -56,10 +52,15 @@ function clickableBlocks(user, userBlocks) {
     })
 }
 
-clickableBlocks(enemy, enemyBlocks)
+//create game over popup
+function gameOver(winner) {
+    console.log('kontol su')
+    const overlay = document.querySelector('#overlay')
+    const popup = document.querySelector('.popup')
+    const winnerText = document.querySelector('.winner-text')
 
-//hide the enemy's ship placement
-enemyBlocks.forEach(enemyBlock => {
-    enemyBlock.setAttribute('class', '')
-    enemyBlock.classList.add('hidden')
-})
+    overlay.classList.add('active')
+    popup.classList.add('active')
+
+    winnerText.textContent = winner
+}
