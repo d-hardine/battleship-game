@@ -10,8 +10,7 @@ createBoard(enemy)
 const playerBlocks = document.querySelectorAll('#player div')
 const enemyBlocks = document.querySelectorAll('#enemy div')
 
-let test = clickableBlocks(enemy, enemyBlocks, player, playerBlocks) //playerBlocks is inserted to make sure the enemy can attack the player blocks
-console.log(test)
+clickableBlocks(enemy, enemyBlocks, player, playerBlocks) //playerBlocks is inserted to make sure the enemy can attack the player blocks
 
 //hide the enemy's ship placement
 enemyBlocks.forEach(enemyBlock => {

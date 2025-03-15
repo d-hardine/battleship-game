@@ -90,7 +90,7 @@ class GameBoard {
         if(this.boardInfo[index] === 'none' || this.boardInfo[index] === 'missed') {
             this.boardInfo[index] = 'missed'
             this.coordinateHistory.push(index)
-            console.log('missed')
+            console.log(`attack missed.`)
         } else {
             this.boardInfo[index].hitCompute()
             console.log(this.boardInfo[index])
@@ -110,7 +110,7 @@ class GameBoard {
         let playerChecker = playerCheckerArray.every(check => check == true)
 
         if(enemyChecker) {
-            return 'All of enemy ships are destroyed.'
+            return 'All of the enemy ships are destroyed.'
         }
         else if (playerChecker) {
             return 'All of your ships are destroyed.'
