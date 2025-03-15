@@ -2,6 +2,11 @@ const twoBoardContainer = document.querySelector('.two-boards-container')
 
 //create boards
 export function createBoard(user) {
+    const boardContainer = document.createElement('div')
+    
+    const gameBoardTitle = document.createElement('div')
+    gameBoardTitle.textContent = `${user.name.toUpperCase()} BOARD`
+
     const gameBoardContainer = document.createElement('div')
     gameBoardContainer.classList.add('game-board')
     gameBoardContainer.id = user.name
@@ -16,7 +21,9 @@ export function createBoard(user) {
         gameBoardContainer.appendChild(block)
     }
 
-    twoBoardContainer.appendChild(gameBoardContainer)
+    twoBoardContainer.appendChild(boardContainer)
+    boardContainer.appendChild(gameBoardTitle)
+    boardContainer.appendChild(gameBoardContainer)
 }
 
 //create clickable blocks
@@ -54,7 +61,6 @@ export function clickableBlocks(user, userBlocks, player, playerBlocks) {
 
 //create game over popup
 function gameOver(winner) {
-    console.log('kontol su')
     const overlay = document.querySelector('#overlay')
     const popup = document.querySelector('.popup')
     const winnerText = document.querySelector('.winner-text')
