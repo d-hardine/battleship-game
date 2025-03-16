@@ -39,30 +39,35 @@ body {
 }
 
 .sidebar-carrier {
+    cursor: grab;
     width: 20px;
     height: 100px;
     background-color: green;
 }
 
 .sidebar-battleship {
+    cursor: grab;
     width: 20px;
     height: 80px;
     background-color: purple;
 }
 
 .sidebar-destroyer {
+    cursor: grab;
     width: 20px;
     height: 60px;
     background-color: yellow;
 }
 
 .sidebar-submarine {
+    cursor: grab;
     width: 20px;
     height: 60px;
     background-color: peru;
 }
 
 .sidebar-patrol-boat {
+    cursor: grab;
     width: 20px;
     height: 40px;
     background-color: slateblue;
@@ -166,10 +171,4 @@ body {
 
 .restart-button {
     margin-bottom: 10px;
-}
-
-.info-container {
-    background-color: white;
-    width: 200px;
-    height: 100px;
 }
