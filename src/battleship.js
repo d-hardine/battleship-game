@@ -22,7 +22,7 @@ const battleship = new Ship('battleship', 4)
 const destroyer = new Ship('destroyer', 3)
 const submarine = new Ship('submarine', 3)
 const patrolBoat = new Ship('patrolBoat', 2)
-const ships = [carrier, battleship, destroyer, submarine, patrolBoat]
+export const ships = [carrier, battleship, destroyer, submarine, patrolBoat]
 
 const enemyCarrier = new Ship('carrier', 5)
 const enemyBattleship = new Ship('battleship', 4)
@@ -45,7 +45,7 @@ class GameBoard {
         this.coordinateHistory = []
     }
 
-    shipPlacement(ship, x = Math.ceil(Math.random() * 10), y = Math.ceil(Math.random() * 10), isVertical = Math.random() < 0.5) { //position boolean: true is horizontal
+    shipPlacement(ship, x = Math.ceil(Math.random() * 10), y = Math.ceil(Math.random() * 10), isVertical = Math.random() < 0.5) { //position boolean: true is vertical
         if(isVertical) { // concerning x coordinate, boolean true is vertical
 
             //check validity
@@ -136,5 +136,4 @@ class Player {
 export const player = new Player('player')
 export const enemy = new Player('enemy')
 
-player.randomizedShipsPlacement()
 enemy.randomizedShipsPlacement()
