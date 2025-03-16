@@ -3,6 +3,7 @@ const twoBoardContainer = document.querySelector('.two-boards-container')
 //create boards
 export function createBoard(user) {
     const boardContainer = document.createElement('div')
+    boardContainer.classList.add('board-container')
     
     const gameBoardTitle = document.createElement('div')
     gameBoardTitle.textContent = `${user.name.toUpperCase()} BOARD`
