@@ -49,9 +49,7 @@ class GameBoard {
         if(isVertical) { // concerning x coordinate, boolean true is vertical
 
             //check validity
-            if(x <= 10 - ship.length)
-                x = x
-            else
+            if(x >= 10 - ship.length)
                 x = 10 - ship.length + 1
 
             //check the coordinate is taken or not
@@ -67,9 +65,7 @@ class GameBoard {
         } else if(!isVertical){ // concerning y coordinate, boolean false is horizontal
 
             //check validity
-            if(y <= 10 - ship.length)
-                y = y
-            else
+            if(y >= 10 - ship.length)
                 y = 10 - ship.length + 1
 
             //check the coordinate is taken or not
