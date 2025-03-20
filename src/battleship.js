@@ -136,4 +136,5 @@ class Player {
 export const player = new Player('player')
 export const enemy = new Player('enemy')
 
+//initialize enemy randomized ships placement
 enemy.randomizedShipsPlacement()

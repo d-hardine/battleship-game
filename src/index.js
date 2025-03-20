@@ -115,8 +115,6 @@ function dragStat(e) {
 let placementCounter = 5
 playerBlocks.forEach(block => {
     block.addEventListener('dragover', (e) => e.preventDefault()) //to disable default browser setting, and enable drag and drop
-    //block.addEventListener('dragenter', dragEnter)
-    //block.addEventListener('dragleave', dragLeave)
     block.addEventListener('drop', dragDrop)
 })
 
@@ -133,7 +131,7 @@ function dragDrop(e) {
     createBoard(player)
     beingDragged.draggable = false
 
-    //make the blocks drag-and-droppable again
+    //updating the playerBlock
     playerBlocks = document.querySelectorAll('#player div')
 
     playerBlocks.forEach(block => {
@@ -162,16 +160,27 @@ playBtn.addEventListener('click', () => {
         enemyBlock.setAttribute('class', '')
         enemyBlock.classList.add('hidden')
         })
+
+        //disable all of the bottom buttons
+        document.querySelector('.bottom-restart-btn').disabled = true
         playBtn.disabled = true
         randomizePlacementbtn.disabled = true
     }
 })
 
 const randomizePlacementbtn = document.querySelector('.randomize-btn')
-/*randomizePlacementbtn.addEventListener('click', () => {
+randomizePlacementbtn.addEventListener('click', () => {
+    //reassign whole board info to none
+    for(let i = 0; i < 100; i++) {
+        player.GameBoard.boardInfo[i] = 'none'
+    }
+
     document.querySelector('.board-container').remove() //delete whole player board, also remove the drag-and-drop capabilities on player blocks
     player.randomizedShipsPlacement()
     createBoard(player)
+
+    //updating the playerBlock
+    playerBlocks = document.querySelectorAll('#player div')
 
     playerBlocks.forEach(block => {
         block.addEventListener('dragover', (e) => e.preventDefault()) //to disable default browser setting, and enable drag and drop
@@ -184,4 +193,5 @@ const randomizePlacementbtn = document.querySelector('.randomize-btn')
     sideBarDestroyer.draggable = false
     sideBarPatrolBoat.draggable = false
     sideBarSubmarine.draggable = false
-})*/
+    console.log(playerBlocks)
+})
